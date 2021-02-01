@@ -1,8 +1,11 @@
 function createRandomeNumber(firstNumber, secondNumber) {
   let randomNumber = Math.random() * (secondNumber);
   randomNumber < firstNumber ? randomNumber += firstNumber : randomNumber;
+
   return randomNumber
 }
+
+
 
 function stringLengthFirst(minNumber, maxNumber) {
   itRandomNumber = createRandomeNumber(minNumber, maxNumber);
