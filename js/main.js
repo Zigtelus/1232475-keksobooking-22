@@ -1,29 +1,29 @@
 function createRandomeNumber(firstNumber, secondNumber) {
-  let randomNumber = Math.random() * (secondNumber);
-  randomNumber < firstNumber ? randomNumber += firstNumber : randomNumber;
-
+  let randomNumber;
+ if( secondNumber < firstNumber) {
+   randomNumber = secondNumber + Math.random() * (firstNumber - secondNumber+1);
+ }
+  else {
+    randomNumber = firstNumber + Math.random() * (secondNumber - firstNumber+1);
+  }
   return randomNumber
 }
 
 
-
-function stringLengthFirst(minNumber, maxNumber) {
+function getIntegerNumber(minNumber, maxNumber) {
   itRandomNumber = createRandomeNumber(minNumber, maxNumber);
 
   return Math.floor(itRandomNumber);
 }
 
-stringLengthFirst(21, 50)
-
-
-
-
-function stringLengthSecond(minNumber, maxNumber, afterDot) {
+function getDecimalNumber(minNumber, maxNumber, afterDot) {
   itRandomNumber = createRandomeNumber(minNumber, maxNumber);
-
-  let minusNumber = String(itRandomNumber).length - (afterDot + String(Math.floor(itRandomNumber)).length + 1);
-  itRandomNumber = Number(String(itRandomNumber).slice(0, -minusNumber));
-  return itRandomNumber
+  if(itRandomNumber>Math.max(minNumber, maxNumber)) {
+    itRandomNumber = Math.max(minNumber, maxNumber);
+  }
+  return Number(itRandomNumber.toFixed(afterDot))
 }
 
-stringLengthSecond(21, 50, 5)
+for (let i = 1; i < 20; i++) {
+  console.log(getDecimalNumber(24, 19,4))
+}
