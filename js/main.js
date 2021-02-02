@@ -1,5 +1,5 @@
 function createRandomeNumber(firstNumber, secondNumber) {
-  let randomNumber;
+ let randomNumber;
  if( secondNumber < firstNumber) {
    randomNumber = secondNumber + Math.random() * (firstNumber - secondNumber+1);
  }
@@ -11,13 +11,13 @@ function createRandomeNumber(firstNumber, secondNumber) {
 
 
 function getIntegerNumber(minNumber, maxNumber) {
-  itRandomNumber = createRandomeNumber(minNumber, maxNumber);
+ let itRandomNumber = createRandomeNumber(minNumber, maxNumber);
 
   return Math.floor(itRandomNumber);
 }
 
 function getDecimalNumber(minNumber, maxNumber, afterDot) {
-  itRandomNumber = createRandomeNumber(minNumber, maxNumber);
+  let itRandomNumber = createRandomeNumber(minNumber, maxNumber);
   if(itRandomNumber>Math.max(minNumber, maxNumber)) {
     itRandomNumber = Math.max(minNumber, maxNumber);
   }
