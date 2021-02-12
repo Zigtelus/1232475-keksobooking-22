@@ -16,11 +16,9 @@ function getIntegerNumber(minNumber, maxNumber) {
 }
 
 function getDecimalNumber(minNumber, maxNumber, afterDot) {
-  let itRandomNumber = createRandomeNumber(minNumber, maxNumber);
-  if(itRandomNumber>Math.max(minNumber, maxNumber)) {
-    itRandomNumber = Math.max(minNumber, maxNumber);
-  }
-  return Number(itRandomNumber.toFixed(afterDot))
+  let numOrder = Math.pow(10,afterDot);
+  let bigRand = Math.floor(createRandomeNumber(minNumber*numOrder,maxNumber*numOrder));
+  return bigRand/numOrder;
 }
 
 
@@ -41,9 +39,14 @@ let author = {
   avatar: 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png'
 }
 
+let location = {
+  x: getDecimalNumber(35.65000, 35.70000, 5),
+  y: getDecimalNumber(139.70000, 139.80000, 5)
+}
+
 let offer = {
   title: 'title_number_1',
-  address: '{{location.x}}, {{location.y}}',
+  address: location.x, location.y,
   price: 2,
   type: 'palace',
   rooms: 1,
@@ -95,9 +98,4 @@ let offer = {
   }
 
 
-}
-
-let location = {
-  x = getDecimalNumber(35.65000, 35.70000, 5),
-  y = getDecimalNumber(139.70000, 139.80000, 5)
 }
