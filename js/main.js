@@ -26,12 +26,12 @@ function getDecimalNumber(minNumber, maxNumber, afterDot) {
 
 // third lesson
 
-function createNewMassifForOffer(initially) {
-  let newMassif = [];
+function createNewArrayForOffer(initially) {
+  let newArray = [];
   for (let i = 0; i < getIntegerNumber(1, initially.length); i++) {
-    newMassif[i] = initially[i];
+    newArray[i] = initially[i];
   }
-  return newMassif
+  return newArray
 }
 
 
@@ -53,27 +53,27 @@ let offer = {
   guests: 1,
 
   checkin: function() {
-    const massif = [
+    const checkinArray = [
       "12:00",
       "13:00",
       "14:00"
     ];
 
-    return massif[getIntegerNumber(0, massif.length -1)]
+    return checkinArray[getIntegerNumber(0, checkinArray.length -1)]
   },
 
   checkout: function() {
-    const massif = [
+    const checkoutArray = [
       "12:00",
       "13:00",
       "14:00"
     ];
 
-    return massif[getIntegerNumber(0, massif.length -1)]
+    return checkoutArray[getIntegerNumber(0, checkoutArray.length -1)]
   },
 
   features:  function() {
-    const massif = [
+    const featuresArray = [
       "wifi",
       "dishwasher",
       "parking",
@@ -82,19 +82,19 @@ let offer = {
       "conditioner"
     ];
 
-    return createNewMassifForOffer(massif)
+    return createNewArrayForOffer(featuresArray)
   },
 
   description: 'dog house',
 
   photos: function() {
-    const massif = [
+    const photosArray = [
       "http://o0.github.io/assets/images/tokyo/hotel1.jpg",
       "http://o0.github.io/assets/images/tokyo/hotel2.jpg",
       "http://o0.github.io/assets/images/tokyo/hotel3.jpg"
     ];
 
-    return createNewMassifForOffer(massif)
+    return createNewArrayForOffer(photosArray)
   }
 
 
