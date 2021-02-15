@@ -21,81 +21,87 @@ function getDecimalNumber(minNumber, maxNumber, afterDot) {
   return bigRand/numOrder;
 }
 
+function getTitle() {
+  let titles = ['3-ех комнатная квартира в Новосибирске', 'Студия 30 квм', 'Комната 15 квм'];
+  return titles[getIntegerNumber(0, titles.length-1)]
+}
 
+function getOfferType() {
+  let types = ['palace', 'flat', 'house', 'bungalow'];
+  return types[getIntegerNumber(0, types.length-1)]
+}
 
+function getCheckin() {
+  let checkins = ['12:00', '13:00', '14:00'];
+  return checkins[getIntegerNumber(0, checkins.length-1)]
+}
 
-// third lesson
+function getOfferType() {
+  let types = ['palace', 'flat', 'house', 'bungalow'];
+  return types[getIntegerNumber(0, types.length-1)]
+}
 
-function createNewArrayForOffer(initially) {
-  let newArray = [];
-  for (let i = 0; i < getIntegerNumber(1, initially.length); i++) {
-    newArray[i] = initially[i];
+function getFeatures() {
+  let arr = [];
+  let features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+  let arrLength = getIntegerNumber(2,features.length);
+  if(arrLength == features.length) {return features};
+  for(let i = 0; i < arrLength; i++) {
+    let fNumber = getIntegerNumber(0, features.length -1);
+    while(arr.indexOf(features[fNumber])> -1) fNumber = getIntegerNumber(0, features.length -1);
+    arr.push(features[fNumber])
   }
-  return newArray
+  return arr;
 }
 
-
-let author = {
-  avatar: 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png'
-}
-
-let location = {
-  x: getDecimalNumber(35.65000, 35.70000, 5),
-  y: getDecimalNumber(139.70000, 139.80000, 5)
-}
-
-let offer = {
-  title: 'title_number_1',
-  address: location.x, location.y,
-  price: 2,
-  type: 'palace',
-  rooms: 1,
-  guests: 1,
-
-  checkin: function() {
-    const checkinArray = [
-      "12:00",
-      "13:00",
-      "14:00"
-    ];
-
-    return checkinArray[getIntegerNumber(0, checkinArray.length -1)]
-  },
-
-  checkout: function() {
-    const checkoutArray = [
-      "12:00",
-      "13:00",
-      "14:00"
-    ];
-
-    return checkoutArray[getIntegerNumber(0, checkoutArray.length -1)]
-  },
-
-  features:  function() {
-    const featuresArray = [
-      "wifi",
-      "dishwasher",
-      "parking",
-      "washer",
-      "elevator",
-      "conditioner"
-    ];
-
-    return createNewArrayForOffer(featuresArray)
-  },
-
-  description: 'dog house',
-
-  photos: function() {
-    const photosArray = [
-      "http://o0.github.io/assets/images/tokyo/hotel1.jpg",
-      "http://o0.github.io/assets/images/tokyo/hotel2.jpg",
-      "http://o0.github.io/assets/images/tokyo/hotel3.jpg"
-    ];
-
-    return createNewArrayForOffer(photosArray)
+function getPhotos() {
+  let arr = [];
+  let photos = ["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"];
+  let arrLength = getIntegerNumber(2,photos.length);
+  if(arrLength == photos.length) {return photos};
+  for(let i = 0; i < arrLength; i++) {
+    let pNumber = getIntegerNumber(0, photos.length -1);
+    while(arr.indexOf(photos[pNumber])> -1) pNumber = getIntegerNumber(0, photos.length -1);
+    arr.push(photos[pNumber])
   }
+  return arr;
+}
 
+function getDescription() {
+  let description = ['Помещение с евроремонтом и всем необходимым для длительного комфортного проживания', 'В квартире имеются: стиральная машина, стол и wi-fi', 'Помещение расположено в элитном районе в центре города и имеет все необходимые комуникации'];
+  return description[getIntegerNumber(0, description.length-1)]
+}
 
+function createOffers() {
+  let arr = [];
+  for (let i = 0; i < 10; i++) {
+
+    let location = {
+      x: getDecimalNumber(35.65, 35.7, 5),
+      y: getDecimalNumber(139.7, 139.8, 5)
+    }
+
+    let obj = {
+
+      author: { avatar: 'img/avatars/user0' + getIntegerNumber(1, 8) + '.png' },
+
+      offer: {
+        title: getTitle(),
+        address: location.x + ',' + location.y,
+        price: getIntegerNumber(300, 500),
+        type: getOfferType(),
+        rooms: getIntegerNumber(1, 5),
+        guests: getIntegerNumber(1, 15),
+        checkin: getCheckin(),
+        checkout: getCheckin(),
+        features: getFeatures(),
+        description: getDescription(),
+        photos: getPhotos(),
+      },
+
+      location: location,
+    }
+    arr.push(obj)
+  }
+  return arr;
 }
