@@ -17,7 +17,7 @@ function getFeatures() {
 
 function getPhotos() {
   let arr = [];
-  let photos = ["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"];
+  let photos = ["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"];
   let arrLength = getIntegerNumber(2,photos.length);
   if(arrLength == photos.length) {return photos};
   for(let i = 0; i < arrLength; i++) {
