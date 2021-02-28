@@ -1,4 +1,4 @@
-import {createOffers} from './data.js';
+import {createOffers, getFeatures, getPhotos} from './data.js';
 
 const cardFragment = document.querySelector('#card').content;
 
@@ -13,7 +13,7 @@ function createCard() {
   let popupType = element.querySelector('.popup__type');
   let popupCapacity = element.querySelector('.popup__text--capacity');
   let popupTime = element.querySelector('.popup__text--time');
-  let popupFeatures = element.querySelectorAll('.popup__features');
+  let popupFeatures = element.querySelector('.popup__features');
   let popupDescription = element.querySelector('.popup__description');
   let popupPhotos = element.querySelector('.popup__photos');
   let popupPhotosImg = element.querySelectorAll('.popup__photo');
@@ -60,9 +60,25 @@ function createCard() {
   }
 
   popupAvatar.src = createOffers()[0].author.avatar;
+  //---
+  let features  = getFeatures();
+  let featuresHTML='';
+  for(let i = 0; i < features.length; i++) {
+    featuresHTML+='<li class="popup__feature popup__feature--'+features[i]+'"></li>';
+  }
+  popupFeatures.innerHTML = featuresHTML;
 
+  //---
+  let photos = getPhotos();
+  let photosHTML = '';
+  for(let i= 0; i < photos.length; i++) {
+  console.log()
+    photosHTML+='<img src=' + photos[i] + ' class="popup__photo" width="45" height="40" alt="Фотография жилья">';
+  }
+  popupPhotos.innerHTML = photosHTML;
+
+  return element;
 }
-
 
 
 export {createCard};
