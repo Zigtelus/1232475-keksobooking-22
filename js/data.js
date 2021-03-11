@@ -48,7 +48,7 @@ function createOffers() {
 
       offer: {
         title: getTitle(),
-        address: location.x + ',' + location.y,
+        address: location.x + ' ' + location.y,
         price: getIntegerNumber(300, 500),
         type: getOfferType(),
         rooms: getIntegerNumber(1, 5),
