@@ -1,6 +1,6 @@
 function createRandomeNumber(firstNumber, secondNumber) {
  let randomNumber;
- if( secondNumber < firstNumber) {
+ if ( secondNumber < firstNumber) {
    randomNumber = secondNumber + Math.random() * (firstNumber - secondNumber+1);
  } else {
     randomNumber = firstNumber + Math.random() * (secondNumber - firstNumber+1);
@@ -29,8 +29,8 @@ function getTitle() {
 }
 
 
+let types = ['bungalow', 'flat', 'house', 'palace'];
 function getOfferType() {
-  let types = ['palace', 'flat', 'house', 'bungalow'];
   return types[getIntegerNumber(0, types.length-1)]
 }
 
@@ -41,4 +41,4 @@ function getCheckin() {
 }
 
 
-export {createRandomeNumber, getIntegerNumber, getDecimalNumber, getTitle, getOfferType, getCheckin};
+export {createRandomeNumber, getIntegerNumber, getDecimalNumber, getTitle, getOfferType, getCheckin, types};

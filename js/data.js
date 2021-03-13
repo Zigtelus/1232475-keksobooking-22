@@ -6,10 +6,10 @@ function getFeatures() {
   let arr = [];
   let features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   let arrLength = getIntegerNumber(2,features.length);
-  if(arrLength == features.length) {return features};
-  for(let i = 0; i < arrLength; i++) {
+  if (arrLength == features.length) {return features};
+  for (let i = 0; i < arrLength; i++) {
     let fNumber = getIntegerNumber(0, features.length -1);
-    while(arr.indexOf(features[fNumber])> -1) fNumber = getIntegerNumber(0, features.length -1);
+    while (arr.indexOf(features[fNumber])> -1) fNumber = getIntegerNumber(0, features.length -1);
     arr.push(features[fNumber])
   }
   return arr;
@@ -19,10 +19,10 @@ function getPhotos() {
   let arr = [];
   let photos = ["http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"];
   let arrLength = getIntegerNumber(2,photos.length);
-  if(arrLength == photos.length) {return photos};
-  for(let i = 0; i < arrLength; i++) {
+  if (arrLength == photos.length) {return photos};
+  for (let i = 0; i < arrLength; i++) {
     let pNumber = getIntegerNumber(0, photos.length -1);
-    while(arr.indexOf(photos[pNumber])> -1) pNumber = getIntegerNumber(0, photos.length -1);
+    while (arr.indexOf(photos[pNumber])> -1) pNumber = getIntegerNumber(0, photos.length -1);
     arr.push(photos[pNumber])
   }
   return arr;

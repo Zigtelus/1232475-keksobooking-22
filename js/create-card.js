@@ -63,7 +63,7 @@ function createCard() {
   //---
   let features  = getFeatures();
   let featuresHTML='';
-  for(let i = 0; i < features.length; i++) {
+  for (let i = 0; i < features.length; i++) {
     featuresHTML+='<li class="popup__feature popup__feature--'+features[i]+'"></li>';
   }
   popupFeatures.innerHTML = featuresHTML;
@@ -71,7 +71,7 @@ function createCard() {
   //---
   let photos = getPhotos();
   let photosHTML = '';
-  for(let i= 0; i < photos.length; i++) {
+  for (let i= 0; i < photos.length; i++) {
   console.log()
     photosHTML+='<img src=' + photos[i] + ' class="popup__photo" width="45" height="40" alt="Фотография жилья">';
   }

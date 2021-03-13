@@ -1,8 +1,10 @@
 import {createOffers} from './data.js';
+import {createCard} from './create-card.js';
+import {centerCity, noticeAddress} from './form-validation.js';
 
-console.log(createOffers()[0].offer.address)
-console.log(createOffers()[0].offer.address.split(' ')[0])
-console.log(createOffers()[0].offer.address.split(' ')[1])
+
+
+
 
 function addAttrDisabled(status) {
   const addDisabled = ['type', 'price', 'timein', 'timeout', 'room_number', 'capacity', 'housing-type', 'housing-price', 'housing-rooms', 'housing-guests', 'housing-features'];
@@ -33,18 +35,17 @@ addClassDisabled('add');
 // map
 const map = L.map('map')
   .on('load', () => {
-    if (true) {
-      console.log('Карта инициализирована')
-      addClassDisabled('remove');
-      addAttrDisabled(false);
-    }
+    addClassDisabled('remove');
+    addAttrDisabled(false);
   })
 
 // position map
   .setView({
-    lat: createOffers()[0].offer.address.split(' ')[0],
-    lng: createOffers()[0].offer.address.split(' ')[1],
+    lat: centerCity.lat,
+    lng: centerCity.lng,
   }, 10);
+
+
 
 // load map
 L.tileLayer(
@@ -55,55 +56,56 @@ L.tileLayer(
 ).addTo(map);
 
 
+// main pin
+const mainIcon = L.icon({
+  iconUrl: '../img/main-pin.svg',
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
+
+const mainPoint = L.marker(
+  {
+    lat: centerCity.lat,
+    lng: centerCity.lng,
+  },
+  {
+    draggable: true,
+    icon: mainIcon,
+  },
+)
+.addTo(map)
+.on('moveend', (evt) => {
+  noticeAddress.value = evt.target.getLatLng().lat + ', ' + evt.target.getLatLng().lng;
+});
 
 
 
-  const points = [
-      {
-        title: createOffers()[0].offer.title,
-        lat: createOffers()[0].offer.address.split(' ')[0],
-        lng: createOffers()[0].offer.address.split(' ')[1],
-      },
+const points = [
+  {
+    title: createOffers()[0].offer.title,
+    lat: createOffers()[0].offer.address.split(' ')[0],
+    lng: createOffers()[0].offer.address.split(' ')[1],
+  },
+];
 
-  ];
-
-
-  points.forEach(({lat, lng, title}) => {
-    const icon = L.icon({
-      iconUrl: '../img/pin.svg',
-      iconSize: [52, 52],
-      iconAnchor: [26, 52],
-    });
-
-    const marker = L.marker (
-      {
-        lat,
-        lng,
-      },
-      {
-        icon,
-      },
-    );
-
-    marker
-    .addTo(map)
-    .bindPopup(title)
-    .on('moveend', (evt) => {
-      console.log(evt.target.getLatLng());
-    });
+points.forEach(({lat, lng, title}) => {
+  const icon = L.icon({
+    iconUrl: '../img/pin.svg',
+    iconSize: [52, 52],
+    iconAnchor: [26, 52],
   });
 
+  const marker = L.marker (
+    {
+      lat,
+      lng,
+    },
+    {
+      icon,
+    },
+  );
 
-
-createMarker()
-createMarker()
-
-console.log(L)
-
-
-
-function createCard() {
-  const card = cardFragment.querySelector('article');
-
-  let element = card.cloneNode(card);
-}
+  marker
+  .addTo(map)
+  .bindPopup(createCard())
+});
