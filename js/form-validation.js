@@ -1,5 +1,10 @@
 import {types} from './util.js';
 
+const MIN_PRICES = ['0', '1000', '5000', '10000']
+const NOTICE_TITLE_MINLENGTH = '30';
+const NOTICE_TITLE_MAXLENGTH = '100';
+const NOTICE_PRICE_MAXLENGTH = '1000000';
+
 let centerCity = {
   lat: 35.685,
   lng: 139.7514,
@@ -24,19 +29,18 @@ const noticeCapacityAll = document.querySelectorAll('#capacity option');
 noticeAddress.value = centerCity.lat + ', ' + centerCity.lng;
 noticeAddress.disabled = true;
 
-noticeTitle.setAttribute('minlength', '30');
-noticeTitle.setAttribute('maxlength', '100');
+noticeTitle.setAttribute('minlength', NOTICE_TITLE_MINLENGTH);
+noticeTitle.setAttribute('maxlength', NOTICE_TITLE_MAXLENGTH);
 noticeTitle.required = true;
 
+noticePrice.setAttribute('maxlength', NOTICE_PRICE_MAXLENGTH);
 noticePrice.required = true;
-noticePrice.setAttribute('maxlength', '1000000');
 
 function findMinPrice() {
-  const minPrices = ['0', '1000', '5000', '10000']
   for (let i = 0; i < types.length; i++){
     if (noticeType.value == types[i]) {
-      noticePrice.setAttribute('min', minPrices[i])
-      noticePrice.setAttribute('placeholder', minPrices[i]);
+      noticePrice.setAttribute('min', MIN_PRICES[i])
+      noticePrice.setAttribute('placeholder', MIN_PRICES[i]);
     }
   }
 }
@@ -50,7 +54,7 @@ noticeType.addEventListener('click', function() {
 function findNoticeTimein(first, second, third) {
   for (let i = 0; i < noticeTimein.length; i++){
     if (second.value == third[i].value) {
-      first[i].selected = true
+      first[i].selected = true;
     }
   }
 }
@@ -67,27 +71,29 @@ for (let u = 0; u < noticeElementTimeAll.length; u++) {
 }
 
 function findNoticeCapacity() {
+
   for (let i = 0; i < noticeRoomNumber.length; i++) {
       if (
-        noticeRoomNumber.value == noticeCapacityAll[i].textContent[4] &&
-        noticeRoomNumber.value < 100
+        noticeRoomNumber.value == noticeCapacityAll[i].value &&
+        noticeRoomNumber.value > 0
       ) {
         for (let j = 0; j < noticeRoomNumber.length; j++) {
           if (
-            noticeCapacityAll[i].textContent[4] >= noticeCapacityAll[j].textContent[4]
+            noticeCapacityAll[j].value <= noticeCapacityAll[i].value &&
+            noticeCapacityAll[j].value > noticeCapacityAll[noticeCapacityAll.length -1].value
           ) {
-            noticeCapacityAll[j].disabled = false
-            noticeCapacityAll[j].selected = true
+            noticeCapacityAll[j].disabled = false;
+            noticeCapacityAll[j].selected = true;
           } else {
-            noticeCapacityAll[j].disabled = true
+            noticeCapacityAll[j].disabled = true;
           }
         }
       }
 
-      if (noticeRoomNumber.value === '100') {
+      if (noticeRoomNumber.value === noticeRoomNumber[noticeCapacityAll.length -1].value) {
         noticeCapacityAll[i].disabled = true;
-        noticeCapacityAll[noticeCapacityAll.length -1].disabled = false
-        noticeCapacityAll[noticeCapacityAll.length -1].selected = true
+        noticeCapacityAll[noticeCapacityAll.length -1].disabled = false;
+        noticeCapacityAll[noticeCapacityAll.length -1].selected = true;
       }
 
     }
