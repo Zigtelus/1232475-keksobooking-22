@@ -3,6 +3,12 @@ import {createCard} from './create-card.js';
 import {centerCity, noticeAddress} from './form-validation.js';
 
 
+const MAIN_PIN_WIDTH = 52;
+const MAIN_PIN_HEIGHT = 52;
+
+const ADV_PIN_WIDTH = 50;
+const ADV_PIN_HEIGHT = 50;
+
 
 
 
@@ -56,14 +62,11 @@ L.tileLayer(
 ).addTo(map);
 
 
-const mainPinWidth = [52, 52];
-const mainPinAnchor = [26, 52];
-
 // main pin
 const mainPinIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
-  iconSize: mainPinWidth,
-  iconAnchor: mainPinAnchor,
+  iconSize: [MAIN_PIN_WIDTH, MAIN_PIN_HEIGHT],
+  iconAnchor: [MAIN_PIN_WIDTH/2, MAIN_PIN_HEIGHT],
 });
 
 const mainPoint = L.marker(
@@ -95,8 +98,8 @@ const points = [
 points.forEach(({lat, lng, title}) => {
   const icon = L.icon({
     iconUrl: '../img/pin.svg',
-    iconSize: [52, 52],
-    iconAnchor: [26, 52],
+    iconSize: [ADV_PIN_WIDTH, ADV_PIN_HEIGHT],
+    iconAnchor: [ADV_PIN_WIDTH/2, ADV_PIN_HEIGHT],
   });
 
   const marker = L.marker (
