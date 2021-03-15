@@ -4,6 +4,7 @@ let centerCity = {
   lat: 35.685,
   lng: 139.7514,
 }
+
 const noticeAddress = document.querySelector('#address');
 const noticeTitle = document.querySelector('#title');
 const noticePrice = document.querySelector('#price');
