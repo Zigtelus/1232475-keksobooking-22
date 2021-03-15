@@ -56,11 +56,14 @@ L.tileLayer(
 ).addTo(map);
 
 
+const mainPinWidth = [52, 52];
+const mainPinAnchor = [26, 52];
+
 // main pin
-const mainIcon = L.icon({
+const mainPinIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: mainPinWidth,
+  iconAnchor: mainPinAnchor,
 });
 
 const mainPoint = L.marker(
@@ -70,7 +73,7 @@ const mainPoint = L.marker(
   },
   {
     draggable: true,
-    icon: mainIcon,
+    icon: mainPinIcon,
   },
 )
 .addTo(map)
@@ -80,6 +83,7 @@ const mainPoint = L.marker(
 
 
 
+console.log(mainPoint)
 const points = [
   {
     title: createOffers()[0].offer.title,
