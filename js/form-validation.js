@@ -10,6 +10,7 @@ let centerCity = {
   lng: 139.7514,
 }
 
+const adForm = document.querySelector('.ad-form');
 const noticeAddress = document.querySelector('#address');
 const noticeTitle = document.querySelector('#title');
 const noticePrice = document.querySelector('#price');
@@ -25,6 +26,8 @@ const noticeRoomNumber = document.querySelector('#room_number');
 const noticeRoomNumberAll = document.querySelectorAll('#room_number option');
 const noticeCapacity = document.querySelector('#capacity');
 const noticeCapacityAll = document.querySelectorAll('#capacity option');
+
+adForm.method = 'action';
 
 noticeAddress.value = centerCity.lat + ', ' + centerCity.lng;
 noticeAddress.disabled = true;
