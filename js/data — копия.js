@@ -1,6 +1,5 @@
 import {createRandomeNumber, getIntegerNumber, getDecimalNumber, getTitle, getOfferType, getCheckin} from './util.js';
-// import {createFetch} from './create-fetch.js';
-
+import {createFetch} from './create-fetch.js';
 
 
 
@@ -68,16 +67,5 @@ function createOffers() {
   }
   return arr;
 }
-
-
-// const fetchAnimals = createFetch((onSuccess) => {
-//    onSuccess[0]
-
-
-//   },
-//   (err) => {
-// });
-// console.log(createFetch());
-
 
 export {getFeatures, getPhotos, getDescription, createOffers};
