@@ -1,8 +1,7 @@
-import {createOffers, getFeatures, getPhotos} from './data.js';
-
 const cardFragment = document.querySelector('#card').content;
 
-function createCard() {
+function createCard(pin) {
+  // console.log(pin.offer.title)
   const card = cardFragment.querySelector('article');
 
   let element = card.cloneNode(card);
@@ -19,38 +18,39 @@ function createCard() {
   let popupPhotosImg = element.querySelectorAll('.popup__photo');
   let popupAvatar = element.querySelector('.popup__avatar');
 
-  popupTitle.textContent = createOffers()[0].offer.title;
-  popupTextAddress.textContent = createOffers()[0].offer.address ;
-  popupTextPrice.textContent = createOffers()[0].offer.price + ' ₽/ночь';
-  popupType.textContent = createOffers()[0].offer.type;
+  popupTitle.textContent = pin.offer.title;
+  popupTextAddress.textContent = pin.offer.address ;
+  popupTextPrice.textContent = pin.offer.price + ' ₽/ночь';
 
-  let typePlace = ['flat', 'bungalow', 'house', 'palace'];
-  let typePlaceRu = ['Квартира', 'Бунгало', 'Дом', 'Дворец'];
-
-  for (let i = 0; i < 4; i++) {
-    if (popupType.textContent === typePlace[i]) {
-      popupType.textContent = typePlaceRu[i];
-    }
+  let typePlace = {
+    flat: 'Квартира',
+    bungalow: 'Бунгало',
+    house: 'Дом',
+    palace: 'Дворец',
   }
 
-  popupCapacity.textContent = createOffers()[0].offer.rooms + ' комнаты для ' + createOffers()[0].offer.guests + ' гостей';
-  popupTime.textContent = 'Заезд после ' + createOffers()[0].offer.checkin + ', выезд до ' + createOffers()[0].offer.checkout;
+  popupType.textContent = typePlace[pin.offer.type];
 
-  let offersFeatures = createOffers()[0].offer.features;
+
+
+  popupCapacity.textContent = pin.offer.rooms + ' комнаты для ' + pin.offer.guests + ' гостей';
+  popupTime.textContent = 'Заезд после ' + pin.offer.checkin + ', выезд до ' + pin.offer.checkout;
+
+  let offersFeatures = pin.offer.features;
   for (let i = 0; i < offersFeatures.length; i++) {
     let offersFeaturesI = '.popup__feature--' + offersFeatures[i];
     element.querySelector('' + offersFeaturesI).textContent = offersFeatures[i];
   }
 
-  popupDescription.textContent = createOffers()[0].offer.description;
+  popupDescription.textContent = pin.offer.description;
 
-  let offersPhotos = createOffers()[0].offer.photos;
-  popupPhotos.childNodes[1].src = createOffers()[0].offer.photos[0];
+  let offersPhotos = pin.offer.photos;
+  popupPhotos.childNodes[1].src = pin.offer.photos[0];
 
   for (let i = 1; i < offersPhotos.length; i++) {
     let numberPhoto = i;
     let imgCreate = document.createElement('img');
-    imgCreate.src = '' + createOffers()[0].offer.photos[numberPhoto];
+    imgCreate.src = '' + pin.offer.photos[numberPhoto];
     imgCreate.classList.add('' + popupPhotosImg[0].classList);
     imgCreate.width = '' + popupPhotosImg[0].width;
     imgCreate.height = '' + popupPhotosImg[0].height;
@@ -59,9 +59,11 @@ function createCard() {
     popupPhotos.appendChild(imgCreate);
   }
 
-  popupAvatar.src = createOffers()[0].author.avatar;
+
+  popupAvatar.src = pin.author.avatar;
   //---
-  let features  = getFeatures();
+
+  let features  = pin.offer.features;
   let featuresHTML='';
   for (let i = 0; i < features.length; i++) {
     featuresHTML+='<li class="popup__feature popup__feature--'+features[i]+'"></li>';
@@ -69,10 +71,11 @@ function createCard() {
   popupFeatures.innerHTML = featuresHTML;
 
   //---
-  let photos = getPhotos();
+
+  let photos = pin.offer.photos;
   let photosHTML = '';
   for (let i= 0; i < photos.length; i++) {
-  console.log()
+
     photosHTML+='<img src=' + photos[i] + ' class="popup__photo" width="45" height="40" alt="Фотография жилья">';
   }
   popupPhotos.innerHTML = photosHTML;

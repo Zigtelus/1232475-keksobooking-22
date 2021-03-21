@@ -1,4 +1,3 @@
-import {createOffers} from './data.js';
 import {createCard} from './create-card.js';
 import {centerCity, noticeAddress} from './form-validation.js';
 
@@ -86,33 +85,37 @@ const mainPoint = L.marker(
 
 
 
-console.log(mainPoint)
-const points = [
-  {
-    title: createOffers()[0].offer.title,
-    lat: createOffers()[0].offer.address.split(' ')[0],
-    lng: createOffers()[0].offer.address.split(' ')[1],
-  },
-];
+// console.log(mainPoint)
 
-points.forEach(({lat, lng, title}) => {
-  const icon = L.icon({
-    iconUrl: '../img/pin.svg',
-    iconSize: [ADV_PIN_WIDTH, ADV_PIN_HEIGHT],
-    iconAnchor: [ADV_PIN_WIDTH/2, ADV_PIN_HEIGHT],
-  });
+function createPoints(points) {
 
-  const marker = L.marker (
-    {
-      lat,
-      lng,
-    },
-    {
-      icon,
-    },
-  );
+  for (let i = 0; i < 10; i++) {
 
-  marker
-  .addTo(map)
-  .bindPopup(createCard())
-});
+    const icon = L.icon({
+      iconUrl: '../img/pin.svg',
+      iconSize: [ADV_PIN_WIDTH, ADV_PIN_HEIGHT],
+      iconAnchor: [ADV_PIN_WIDTH/2, ADV_PIN_HEIGHT],
+    });
+
+    // console.log(points[i].location.lat);
+    let lat = points[i].location.lat;
+    let lng = points[i].location.lng;
+    const marker = L.marker (
+      {
+        lat,
+        lng,
+      },
+      {
+        icon,
+      },
+    );
+
+    marker
+    .addTo(map)
+    .bindPopup(createCard(points[i]))
+
+  }
+
+}
+
+export {createPoints};
