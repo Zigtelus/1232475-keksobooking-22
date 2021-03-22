@@ -47,10 +47,6 @@ function findMinPrice() {
 }
 findMinPrice()
 
-noticeType.addEventListener('click', function() {
-  findMinPrice()
-})
-
 
 function findNoticeTimein(first, second, third) {
   for (let i = 0; i < noticeTimein.length; i++){
@@ -60,6 +56,7 @@ function findNoticeTimein(first, second, third) {
   }
 }
 findNoticeTimein(noticeTimeoutAll, noticeTimein, noticeTimeinAll)
+
 
 for (let u = 0; u < noticeElementTimeAll.length; u++) {
   noticeElementTimeAll[u].addEventListener('click', function() {
@@ -71,42 +68,40 @@ for (let u = 0; u < noticeElementTimeAll.length; u++) {
   })
 }
 
-function findNoticeCapacity() {
 
+function findNoticeCapacity() {
   for (let i = 0; i < noticeRoomNumber.length; i++) {
-      if (
-        noticeRoomNumber.value == noticeCapacityAll[i].value &&
-        noticeRoomNumber.value > 0
-      ) {
-        for (let j = 0; j < noticeRoomNumber.length; j++) {
-          if (
-            noticeCapacityAll[j].value <= noticeCapacityAll[i].value &&
-            noticeCapacityAll[j].value > noticeCapacityAll[noticeCapacityAll.length -1].value
-          ) {
-            noticeCapacityAll[j].disabled = false;
-            noticeCapacityAll[j].selected = true;
-          } else {
-            noticeCapacityAll[j].disabled = true;
-          }
+    if (
+      noticeRoomNumber.value == noticeCapacityAll[i].value &&
+      noticeRoomNumber.value > 0
+    ) {
+      for (let j = 0; j < noticeRoomNumber.length; j++) {
+        if (
+          noticeCapacityAll[j].value <= noticeCapacityAll[i].value &&
+          noticeCapacityAll[j].value > noticeCapacityAll[noticeCapacityAll.length -1].value
+        ) {
+          noticeCapacityAll[j].disabled = false;
+          noticeCapacityAll[j].selected = true;
+        } else {
+          noticeCapacityAll[j].disabled = true;
         }
       }
-
-      if (noticeRoomNumber.value === noticeRoomNumber[noticeCapacityAll.length -1].value) {
-        noticeCapacityAll[i].disabled = true;
-        noticeCapacityAll[noticeCapacityAll.length -1].disabled = false;
-        noticeCapacityAll[noticeCapacityAll.length -1].selected = true;
-      }
-
     }
 
+    if (noticeRoomNumber.value === noticeRoomNumber[noticeCapacityAll.length -1].value) {
+      noticeCapacityAll[i].disabled = true;
+      noticeCapacityAll[noticeCapacityAll.length -1].disabled = false;
+      noticeCapacityAll[noticeCapacityAll.length -1].selected = true;
+    }
+
+  }
 }
 findNoticeCapacity()
+
 
 noticeRoomNumber.addEventListener('click', function() {
   findNoticeCapacity()
 })
-
-
 
 
 export {centerCity, noticeAddress};

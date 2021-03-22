@@ -8,9 +8,6 @@ const MAIN_PIN_HEIGHT = 52;
 const ADV_PIN_WIDTH = 50;
 const ADV_PIN_HEIGHT = 50;
 
-
-
-
 function addAttrDisabled(status) {
   const addDisabled = ['type', 'price', 'timein', 'timeout', 'room_number', 'capacity', 'housing-type', 'housing-price', 'housing-rooms', 'housing-guests', 'housing-features'];
 
@@ -19,7 +16,6 @@ function addAttrDisabled(status) {
   }
 }
 addAttrDisabled(true);
-
 
 function addClassDisabled(status) {
   const addDisabled = ['ad-form', 'map__filters'];
@@ -34,25 +30,16 @@ function addClassDisabled(status) {
 }
 addClassDisabled('add');
 
-
-
-
-// map
 const map = L.map('map')
   .on('load', () => {
     addClassDisabled('remove');
     addAttrDisabled(false);
   })
-
-// position map
   .setView({
     lat: centerCity.lat,
     lng: centerCity.lng,
   }, 10);
 
-
-
-// load map
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
@@ -60,8 +47,6 @@ L.tileLayer(
   },
 ).addTo(map);
 
-
-// main pin
 const mainPinIcon = L.icon({
   iconUrl: '../img/main-pin.svg',
   iconSize: [MAIN_PIN_WIDTH, MAIN_PIN_HEIGHT],
@@ -83,12 +68,7 @@ const mainPoint = L.marker(
   noticeAddress.value = evt.target.getLatLng().lat + ', ' + evt.target.getLatLng().lng;
 });
 
-
-
-// console.log(mainPoint)
-
 function createPoints(points) {
-
   for (let i = 0; i < 10; i++) {
 
     const icon = L.icon({
@@ -97,7 +77,6 @@ function createPoints(points) {
       iconAnchor: [ADV_PIN_WIDTH/2, ADV_PIN_HEIGHT],
     });
 
-    // console.log(points[i].location.lat);
     let lat = points[i].location.lat;
     let lng = points[i].location.lng;
     const marker = L.marker (
@@ -115,7 +94,6 @@ function createPoints(points) {
     .bindPopup(createCard(points[i]))
 
   }
-
 }
 
 export {createPoints};

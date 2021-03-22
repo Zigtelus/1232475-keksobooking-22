@@ -1,7 +1,6 @@
 const cardFragment = document.querySelector('#card').content;
 
 function createCard(pin) {
-  // console.log(pin.offer.title)
   const card = cardFragment.querySelector('article');
 
   let element = card.cloneNode(card);
@@ -31,8 +30,6 @@ function createCard(pin) {
 
   popupType.textContent = typePlace[pin.offer.type];
 
-
-
   popupCapacity.textContent = pin.offer.rooms + ' комнаты для ' + pin.offer.guests + ' гостей';
   popupTime.textContent = 'Заезд после ' + pin.offer.checkin + ', выезд до ' + pin.offer.checkout;
 
@@ -59,9 +56,7 @@ function createCard(pin) {
     popupPhotos.appendChild(imgCreate);
   }
 
-
   popupAvatar.src = pin.author.avatar;
-  //---
 
   let features  = pin.offer.features;
   let featuresHTML='';
@@ -70,12 +65,9 @@ function createCard(pin) {
   }
   popupFeatures.innerHTML = featuresHTML;
 
-  //---
-
   let photos = pin.offer.photos;
   let photosHTML = '';
   for (let i= 0; i < photos.length; i++) {
-
     photosHTML+='<img src=' + photos[i] + ' class="popup__photo" width="45" height="40" alt="Фотография жилья">';
   }
   popupPhotos.innerHTML = photosHTML;
