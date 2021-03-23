@@ -21,5 +21,24 @@ const createFetch = (onSuccess, onError) => () => {
     });
 };
 
-export {createFetch};
+
+const createPostRequest = (data, onSuccess, onError) => {
+  fetch(
+    'https://22.javascript.pages.academy/keksobooking',
+    {
+      method: 'POST',
+      body: data,
+    })
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onError();
+        const {statusText, status} = response;
+        throw new Error(`${status} — ${statusText}`);
+      }
+    })
+};
+
+export {createFetch, createPostRequest};
 

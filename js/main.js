@@ -1,4 +1,4 @@
-import {createFetch} from './create-fetch.js';
+import {createFetch, createPostRequest} from './create-fetch.js';
 import {createPoints} from './map.js';
 import {getCheckin} from './util.js';
 
@@ -24,22 +24,23 @@ function createSuccess() {
   let successMessage = element.querySelector('.success__message');
 
   main.appendChild(element);
+
+  document.addEventListener('keydown', function() {
+    if (event.code == 'Escape') {
+      element.classList.add('hidden');
+    }
+});
 }
 
 
-document.addEventListener('keydown', function() {
-  if (event.code == 'Escape') {
-    element.classList.add('hidden');
-  }
-});
 
 
 document.querySelector('.ad-form').addEventListener('submit', (evt) => {
   evt.preventDefault();
 
-  sendData(
+  createPostRequest(
+    new FormData(evt.target),
     () => createSuccess(),
     () => showAlert('Не удалось отправить форму. Попробуйте ещё раз'),
-    new FormData(evt.target),
   );
 });
